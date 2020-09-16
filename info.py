@@ -15,6 +15,9 @@ def slack_post_text(url, text):
     # {"username": "new-bot-name"}
     return result
 
+def clean_text(text):
+    return " ".join(text.split())
+
 url = os.environ.get('SLACK_URL')
 
 req = requests.get('https://www.nipa.kr/main/selectBbsNttList.do?bbsNo=2&key=122')
@@ -34,12 +37,13 @@ dates = soup.select('#contents div table tbody tr td time')
 for date, elem in zip(dates, elems):
     d = datetime.strptime(date["datetime"], "%Y-%m-%d")
     if d > base_date:
-        matches.append(f'{date.text.strip()} : {elem.text.strip()} \n 주소 : {elem["href"].strip()}')
+        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip())} \n 주소 : {elem["href"].strip()}')
 
 
 if matches:
     contents = '최근 올라온 공고가 있습니다. \n\n'
 
     contents += '\n'.join(matches)
+    print(contents)
     slack_post_text(url, contents)
 
