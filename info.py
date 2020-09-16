@@ -41,9 +41,9 @@ for date, elem in zip(dates, elems):
 
 
 if matches:
-    contents = '최근 올라온 공고가 있습니다. \n\n'
+    contents = '최근 올라온 정보통신산업진흥원 공고가 있습니다. \n\n'
 
     contents += '\n'.join(matches)
     print(contents)
-    slack_post_text(url, contents)
+    # slack_post_text(url, contents)
 
