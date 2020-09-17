@@ -43,7 +43,7 @@ def date_preprocess(dates):
 for date, title in zip(dates, titles):
 
     date = datetime.strptime(date.text.replace('.', '-'), "%Y-%m-%d")
-    if (date > base_date) and ('[입찰공고]' in title.text.strip()):
+    if (date > base_date) and ('[입찰공고]' in title.text.strip() or '[추경]' in title.text.strip()):
             matches.append(f'{date.strftime("%Y-%m-%d")} : {clean_text(eliminate_not_essential(title.text.strip()))}')
 
 
@@ -52,4 +52,4 @@ if matches:
 
     contents += '\n'.join(matches)
     print(contents)
-    slack_post_text(url, contents)
+    #slack_post_text(url, contents)
