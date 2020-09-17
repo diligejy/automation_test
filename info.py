@@ -37,11 +37,11 @@ dates = soup.select('#contents div table tbody tr td time')
 for date, elem in zip(dates, elems):
     d = datetime.strptime(date["datetime"], "%Y-%m-%d")
     if d > base_date:
-        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip())} \n 주소 : {elem["href"].strip()}')
+        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip())} \n')
 
 
 if matches:
-    contents = '최근 올라온 정보통신산업진흥원 공고가 있습니다. \n\n'
+    contents = '최근 올라온 정보통신산업진흥원 공고가 있습니다. \n'
 
     contents += '\n'.join(matches)
     print(contents)
