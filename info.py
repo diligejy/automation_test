@@ -45,5 +45,5 @@ if matches:
 
     contents += '\n'.join(matches)
     print(contents)
-    # slack_post_text(url, contents)
+    slack_post_text(url, contents)
 
