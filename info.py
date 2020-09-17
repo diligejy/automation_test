@@ -16,6 +16,7 @@ def slack_post_text(url, text):
     return result
 
 def clean_text(text):
+    text = text.replace('새글','')
     return " ".join(text.split())
 
 url = os.environ.get('SLACK_URL')
@@ -37,7 +38,7 @@ dates = soup.select('#contents div table tbody tr td time')
 for date, elem in zip(dates, elems):
     d = datetime.strptime(date["datetime"], "%Y-%m-%d")
     if d > base_date:
-        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip().replace('새글', '')}')
+        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip())}')
 
 
 if matches:
