@@ -37,7 +37,7 @@ dates = soup.select('#contents div table tbody tr td time')
 for date, elem in zip(dates, elems):
     d = datetime.strptime(date["datetime"], "%Y-%m-%d")
     if d > base_date:
-        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip())}')
+        matches.append(f'{date.text.strip()} : {clean_text(elem.text.strip().replace('새글', '')}')
 
 
 if matches:
