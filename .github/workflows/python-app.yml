@@ -33,6 +33,9 @@ jobs:
     - run: python info.py
       env: # Or as an environment variable
         SLACK_URL: ${{ secrets.SLACK_URL }}
+    - run: python nia.py
+      env: # Or as an environment variable
+        SLACK_URL: ${{ secrets.SLACK_URL }}
       
         
         
